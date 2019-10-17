@@ -11,35 +11,36 @@ Nash = {"name":"Nash","age":24,"job":"chef","relations":{"John":"cousin","Zalika
 
 my_group = {'Jill':Jill,'Zalika':Zalika,'John':John,'Nash':Nash}
 
-def lookup_person(group, name, *othername):
+def lookup_person(group, name, othername=""):
 	vowels = set(['a','e','i','o','u'])
 
 	person = group[name]
 	output = person["name"] + " is "
-	output += person["age"]
+	output += str(person["age"])
 	if "job" in person:
 		if person["job"][0] in(vowels):
 			output += ", an "
-		else
-			output += ", a"
+		else:
+			output += ", a "
 		output += person["job"]
-
-	if othername in person["relations"]:
-		output += ", and "
-		output += othername
-		output += "'s "
-		output += person["relations"][othername]
-	else
-		output += ", and they do not know "
-		output += othername
+	if othername != "":
+		if othername in person["relations"]:
+			output += ", and "
+			output += othername
+			output += "'s "
+			output += person["relations"][othername]
+		else:
+			output += ", and they do not know "
+			output += othername
 	output += "."
 
 	return output
 
 
 
-print(lookup_person(my_group,"Zalika","John"))
-print(lookup_person(my_group,"Zalika","Nash"))
+print(lookup_person(my_group,"Zalika","Jill"))
+print(lookup_person(my_group,"Jill","John"))
+print(lookup_person(my_group,"Jill","Zalika"))
 print(lookup_person(my_group,"Zalika"))
 		
 
